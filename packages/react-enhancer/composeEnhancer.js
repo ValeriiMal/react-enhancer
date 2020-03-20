@@ -1,8 +1,8 @@
 import { createElement as ce } from 'react';
-import { compose } from 'ramda';
+import compose from 'ramda.compose';
 
 // Enhancer :: Tuple (Component, Props) -> Tuple (Component, Props)
-// Array Enhancer -> Component -> Props -> Element
+// composeEnhancer :: Array Enhancer -> Component -> Props -> Element
 const composeEnhancer = enhancerList => {
   return (Component) => (props) =>
     compose(

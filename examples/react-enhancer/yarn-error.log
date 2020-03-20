@@ -1,0 +1,48 @@
+Arguments: 
+  /home/pc/.nvm/versions/node/v10.13.0/bin/node /usr/share/yarn/bin/yarn.js build
+
+PATH: 
+  /home/pc/.nvm/versions/node/v10.13.0/bin:/home/pc/.local/bin:/home/pc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin:/home/pc/projects/tika/bin:/home/pc/tika-start-db:/usr/local/go/bin:/home/pc/Android/Sdk/emulator:/home/pc/Android/Sdk/tools:/home/pc/Android/Sdk/tools/bin:/home/pc/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.12.3
+
+Node version: 
+  10.13.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/pc/projects/react-enhancer/package.json: Unexpected token } in JSON at position 182
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1631:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:304:30)
+      at /usr/share/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "react-enhancer-example",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "build": "webpack",
+      "prestart": "npm run build",
+      "start": "serve -s dist/"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "html-webpack-plugin": "^3.2.0",
+      "webpack": "^4.42.0",
+      "webpack-cli": "^3.3.11"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
