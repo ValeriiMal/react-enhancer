@@ -14,8 +14,12 @@ import {
   merge,
   omit,
 } from "ramda";
-
-import "./styles.css";
+import {
+  composeEnhancer,
+  createPropsEnhancer,
+  createComponentEnhancer,
+  createEnhancer,
+} from '../../index';
 
 const addState = ([C, P]) => {
   const Result = props => {
@@ -57,24 +61,6 @@ const addInputFlicker = ([C, P]) => {
   return [Result, P];
 };
 
-// Enhancer :: Tuple (Component, Props) -> Tuple (Component, Props)
-// Array Enhancer -> Component -> Props -> Element
-const composeEnhancer = enhancerList => {
-  return (Component) => (props) =>
-    compose(
-      ([C, P]) => ce(C, P),
-      ...enhancerList
-    )([Component, props]);
-};
-
-const createComponentEnhancer = (enhanceComponent /*HOC*/) => {
-  return ([C, P]) => [enhanceComponent(C), P];
-};
-
-const createPropsEnhancer = (enhanceProps/*Map Transformer*/) => {
-  return ([C, P]) => [C, enhanceProps(P)];
-};
-
 const addDebouncedChange = createPropsEnhancer(
   P => assoc('onChange', debounce(P.onChange, 1000), P),
 );
@@ -85,12 +71,6 @@ const shadow = {
 const addBoxShadow = createPropsEnhancer( P => {
   return assoc('style', merge(P.style, shadow), P);
 });
-
-const createEnhancer = (enhanceComponent /*HOC*/, enhanceProps/*Map Transformer*/) => {
-  return ([C, P]) => {
-    return [enhanceComponent(C), enhanceProps(P)];
-  };
-};
 
 const addLogClick = (content, logger = console.log) => createEnhancer(
   // HOC
@@ -287,4 +267,4 @@ function App() {
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(ce(App), rootElement);
